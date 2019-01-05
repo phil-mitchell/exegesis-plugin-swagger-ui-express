@@ -60,4 +60,8 @@ typings/
 # next.js build output
 .next
 
+shippable
+
 xunit.xml
+integrationtests.xml
+unittests.xml

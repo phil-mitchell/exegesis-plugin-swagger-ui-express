@@ -6,6 +6,7 @@ const path = require( 'path' );
 const is_shippable = process.env.SHIPPABLE === 'true';
 
 var coverage_dir = is_shippable ? './shippable/codecoverage' : './coverage';
+var results_dir = is_shippable ? './shippable/testresults' : '.';
 
 module.exports = function( grunt ) {
     grunt.initConfig({
@@ -14,6 +15,12 @@ module.exports = function( grunt ) {
             coverage: {
                 APP_DIR_FOR_CODE_COVERAGE: path.resolve( __dirname, 'coverage/instrument' ),
                 REPORT_DIR_FOR_CODE_COVERAGE: path.resolve( __dirname, 'coverage/reports' )
+            },
+            unit: {
+                XUNIT_FILE: results_dir + '/unittests.xml'
+            },
+            integration: {
+                XUNIT_FILE: results_dir + '/integrationtests.xml'
             }
         },
         mkdir: {
@@ -74,8 +81,8 @@ module.exports = function( grunt ) {
         global['__coverage__'] = global['__coverage__'] || {};
     });
 
-    grunt.registerTask( 'unit', [ 'mochaTest:unit' ] );
-    grunt.registerTask( 'integration', [ 'express:test', 'mkdir:report', 'mochaTest:integration', 'express:test:stop' ] );
+    grunt.registerTask( 'unit', [ 'env:unit', 'mkdir:report', 'mochaTest:unit' ] );
+    grunt.registerTask( 'integration', [ 'env:integration', 'express:test', 'mkdir:report', 'mochaTest:integration', 'express:test:stop' ] );
     grunt.registerTask( 'default', [ 'clean', 'integration' ] );
     grunt.registerTask( 'coverage', [ 'clean', 'env:coverage', 'instrument', 'unit', 'integration', 'dummyCoverage', 'storeCoverage', 'makeReport' ] );
 };
