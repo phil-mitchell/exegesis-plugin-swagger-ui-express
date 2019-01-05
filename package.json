@@ -1,0 +1,22 @@
+{
+  "name": "exegesis-plugin-swagger-ui-express",
+  "version": "1.0.0",
+  "description": "Swagger UI as an exegesis plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express.git"
+  },
+  "author": "Phil Mitchell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express/issues"
+  },
+  "homepage": "https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express#readme",
+  "dependencies": {
+    "swagger-ui-express": "^4.0.2"
+  }
+}
