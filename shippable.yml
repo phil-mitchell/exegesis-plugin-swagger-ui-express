@@ -5,9 +5,27 @@ node_js:
   - 10.15.0
 
 env:
-  - XUNIT_FILE=shippable/testresults/result.xml
+  global:
+    - XUNIT_FILE: shippable/testresults/result.xml
+    - secure: lYm2gQlxwsrf16HEAm3dy0jHH2t8vbq9Oj3xrXKYRFHBM8tNVuRQA8RdabfsRVDV4PX8U/0z4tbDl4wP6YxGk4WXP9FoYknX7S53Q8Uy6iuEV8JSLY46f9WrKPkm6JkRaybxtEVl+i07P9ah4e8RhXv7Rj/GBU9nhAwnljFaxHFeKjBIIk4z/ygvWqFinS8tVpjgZBYg3dMtuIsdDOnlKMRrOvbiwnaGqXDBW+vpIyDZuJHsHe2UmgqyA4fWWusFqQpAeNl9pwdfv67SeSKT+qQZFrJBAtjEqnX/MP92v9tLNNig/MsSBWf5gyRJhDhtXM4Sv7D/sP2wZMnP91bq7w==
+  matrix:  
 
 build:
   ci:
-    - npm install
+    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+    - shippable_retry npm install
     - npm test
+
+jobs:
+  - name: semantic-release
+    type: runSh
+    dependencyMode: strict
+    steps:
+      - IN: deployRepo
+      - TASK:
+          - script: echo "hello world"
+  - name: exegesis-plugin-swagger-ui-express_runCI
+    type: runCI
+    steps:
+      - OUT: deployRepo
+        replicate: exegesis-plugin-swagger-ui-express_ciRepo
