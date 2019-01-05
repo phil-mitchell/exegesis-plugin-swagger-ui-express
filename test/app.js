@@ -4,6 +4,9 @@ const express = require( 'express' );
 const exegesisExpress = require( 'exegesis-express' );
 const http = require( 'http' );
 const path = require( 'path' );
+const fs = require( 'fs' );
+
+const require_helper = require( './require_helper' );
 
 async function createServer() {
     const app = express();
@@ -12,18 +15,18 @@ async function createServer() {
         controllers: {},
         allowMissingControllers: true,
         plugins: [
-            require( '../src/index.js' )({
+            require_helper( 'index.js' )({
                 app: app,
                 path: '/api-doc'
             }),
-            require( '../src/index.js' )({
+            require_helper( 'index.js' )({
                 app: app,
                 path: '/api-doc-title',
                 swaggerUIOptions: {
                     customSiteTitle: 'Petstore API'
                 }
             }),
-            require( '../src/index.js' )({
+            require_helper( 'index.js' )({
                 app: app,
                 path: '/api-doc-explorer',
                 swaggerUIOptions: {
@@ -53,6 +56,17 @@ async function createServer() {
     const server = http.createServer( app );
 
     return server;
+}
+
+if( process.env.REPORT_DIR_FOR_CODE_COVERAGE ) {
+    process.on( 'exit', () => {
+        if( global['__coverage__'] ) {
+            fs.writeFileSync(
+                process.env.REPORT_DIR_FOR_CODE_COVERAGE + '/app.json',
+                JSON.stringify( global['__coverage__'] ), 'utf8'
+            );
+        }
+    });
 }
 
 createServer()
