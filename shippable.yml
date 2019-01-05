@@ -21,11 +21,20 @@ jobs:
     type: runSh
     dependencyMode: strict
     steps:
-      - IN: deployRepo
+      - IN: exegesis-plugin-swagger-ui-express_deployRepo
       - TASK:
           - script: echo "hello world"
   - name: exegesis-plugin-swagger-ui-express_runCI
     type: runCI
     steps:
-      - OUT: deployRepo
+      - OUT: exegesis-plugin-swagger-ui-express_deployRepo
         replicate: exegesis-plugin-swagger-ui-express_ciRepo
+
+resources:
+  - name: exegesis-plugin-swagger-ui-express_deployRepo
+    type: gitRepo
+    integration: "phil-mitchell github"
+    pointer:
+      sourceName: phil-mitchell/exegesis-plugin-swagger-ui-express
+      branch: master
+      buildOnCommit: false
