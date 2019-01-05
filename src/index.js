@@ -2,7 +2,7 @@
 const swaggerUi = require( 'swagger-ui-express' );
 
 class SwaggerUIPlugin {
-    constructor( apiDoc, options ) {
+    constructor( options ) {
         this._options = options;
 
         if( !this._options.app || typeof( this._options.app.use ) !== 'function' ) {
