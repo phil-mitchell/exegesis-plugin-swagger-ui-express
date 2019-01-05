@@ -15,4 +15,4 @@ build:
     - shippable_retry npm install
     - npm test
   on_success:
-    - npm run semantic-release
+    - if [ "$BRANCH" == "master" ]; then npm run semantic-release; fi
