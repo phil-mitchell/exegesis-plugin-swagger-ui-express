@@ -16,6 +16,13 @@ module.exports = function( grunt ) {
                 REPORT_DIR_FOR_CODE_COVERAGE: path.resolve( __dirname, 'coverage/reports' )
             }
         },
+        mkdir: {
+            report: {
+                options: {
+                    create: [ path.dirname( process.env.XUNIT_FILE || './xunit.xml' ) ]
+                }
+            }
+        },
         express: {
             test: {
                 options: {
@@ -58,8 +65,13 @@ module.exports = function( grunt ) {
     grunt.loadNpmTasks( 'grunt-istanbul' );
     grunt.loadNpmTasks( 'grunt-env' );
     grunt.loadNpmTasks( 'grunt-contrib-clean' );
+    grunt.loadNpmTasks( 'grunt-mkdir' );
 
-    grunt.registerTask( 'integration', [ 'express:test', 'mochaTest', 'express:test:stop' ] );
+    grunt.registerTask( 'dummyCoverage', () => {
+        global['__coverage__'] = {};
+    });
+
+    grunt.registerTask( 'integration', [ 'express:test', 'mkdir:report', 'mochaTest', 'express:test:stop' ] );
     grunt.registerTask( 'default', [ 'clean', 'integration' ] );
-    grunt.registerTask( 'coverage', [ 'clean', 'env:coverage', 'instrument', 'integration'/*, 'storeCoverage'*/, 'makeReport' ] );
+    grunt.registerTask( 'coverage', [ 'clean', 'env:coverage', 'instrument', 'integration', 'dummyCoverage', 'storeCoverage', 'makeReport' ] );
 };

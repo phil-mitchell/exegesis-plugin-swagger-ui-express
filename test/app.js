@@ -4,7 +4,7 @@ const express = require( 'express' );
 const exegesisExpress = require( 'exegesis-express' );
 const http = require( 'http' );
 const path = require( 'path' );
-const fs = require( 'fs' );
+const fs = require( 'fs-extra' );
 
 const require_helper = require( './require_helper' );
 
@@ -59,14 +59,17 @@ async function createServer() {
 }
 
 if( process.env.REPORT_DIR_FOR_CODE_COVERAGE ) {
-    process.on( 'exit', () => {
-        if( global['__coverage__'] ) {
-            fs.writeFileSync(
-                process.env.REPORT_DIR_FOR_CODE_COVERAGE + '/app.json',
-                JSON.stringify( global['__coverage__'] ), 'utf8'
-            );
-        }
-    });
+    const dumpCoverage = () => {
+        console.warn( 'Outputting code coverage information to ' + process.env.REPORT_DIR_FOR_CODE_COVERAGE );
+        fs.ensureDirSync( process.env.REPORT_DIR_FOR_CODE_COVERAGE );
+        fs.writeFileSync(
+            process.env.REPORT_DIR_FOR_CODE_COVERAGE + '/app.json',
+            JSON.stringify( global['__coverage__'] ), 'utf8'
+        );
+    };
+    process.on( 'exit', dumpCoverage );
+    process.on( 'SIGINT', process.exit );
+    process.on( 'SIGTERM', process.exit );
 }
 
 createServer()
