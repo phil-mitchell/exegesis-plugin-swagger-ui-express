@@ -4,8 +4,9 @@
   "description": "Swagger UI as an exegesis plugin",
   "main": "src/index.js",
   "scripts": {
-    "test": "grunt coverage",
-    "lint": "eslint ."
+      "test": "grunt coverage",
+      "lint": "eslint .",
+      "semantic-release": "node semantic-release -d"
   },
   "repository": {
     "type": "git",
