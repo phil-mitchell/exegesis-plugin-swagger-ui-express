@@ -41,8 +41,11 @@ module.exports = function( grunt ) {
             options: {
                 reporter: 'spec-xunit-file'
             },
-            test: {
-                src: [ 'src/**/*.spec.js', 'test/**/*.spec.js' ]
+            unit: {
+                src: [ 'test/unit/**/*.spec.js' ]
+            },
+            integration: {
+                src: [ 'test/integration/**/*.spec.js' ]
             }
         },
         storeCoverage: {
@@ -54,7 +57,7 @@ module.exports = function( grunt ) {
         makeReport: {
             src: './coverage/reports/**/*.json',
             options: {
-                type: 'cobertura',
+                type: [ 'cobertura', 'html', 'json', 'lcovonly' ],
                 dir: coverage_dir,
                 print: 'detail'
             }
@@ -68,10 +71,11 @@ module.exports = function( grunt ) {
     grunt.loadNpmTasks( 'grunt-mkdir' );
 
     grunt.registerTask( 'dummyCoverage', () => {
-        global['__coverage__'] = {};
+        global['__coverage__'] = global['__coverage__'] || {};
     });
 
-    grunt.registerTask( 'integration', [ 'express:test', 'mkdir:report', 'mochaTest', 'express:test:stop' ] );
+    grunt.registerTask( 'unit', [ 'mochaTest:unit' ] );
+    grunt.registerTask( 'integration', [ 'express:test', 'mkdir:report', 'mochaTest:integration', 'express:test:stop' ] );
     grunt.registerTask( 'default', [ 'clean', 'integration' ] );
-    grunt.registerTask( 'coverage', [ 'clean', 'env:coverage', 'instrument', 'integration', 'dummyCoverage', 'storeCoverage', 'makeReport' ] );
+    grunt.registerTask( 'coverage', [ 'clean', 'env:coverage', 'instrument', 'unit', 'integration', 'dummyCoverage', 'storeCoverage', 'makeReport' ] );
 };
