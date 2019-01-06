@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express/compare/v1.0.4...v1.0.5) (2019-01-06)
+
+
+### Bug Fixes
+
+* **release:** include some Node-related badges and minimum Node version ([631fae3](https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express/commit/631fae3))
+
 ## [1.0.4](https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express/compare/v1.0.3...v1.0.4) (2019-01-06)
 
 
