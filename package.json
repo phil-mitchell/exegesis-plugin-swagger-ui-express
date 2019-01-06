@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "engines" : {
     "node" : ">=8"
-  }
+  },
   "scripts": {
     "test": "grunt coverage",
     "lint": "eslint .",
