@@ -2,6 +2,10 @@
 
 [![Run Status](https://api.shippable.com/projects/5c3011d2302eb707003b9ffe/badge?branch=master)]()
 [![Coverage Badge](https://api.shippable.com/projects/5c3011d2302eb707003b9ffe/coverageBadge?branch=master)]()
+![](https://img.shields.io/github/issues/phil-mitchell/exegesis-plugin-swagger-ui-express.svg)
+![](https://img.shields.io/github/license/phil-mitchell/exegesis-plugin-swagger-ui-express.svg)
+![](https://img.shields.io/node/v/exegesis-plugin-swagger-ui-express.svg)
+![](https://img.shields.io/npm/dependency-version/exegesis-plugin-swagger-ui-express/swagger-ui-express.svg)
 
 ## Description
 

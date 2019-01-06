@@ -3,6 +3,9 @@
   "version": "1.0.4",
   "description": "Swagger UI as an exegesis plugin",
   "main": "src/index.js",
+  "engines" : {
+    "node" : ">=8"
+  }
   "scripts": {
     "test": "grunt coverage",
     "lint": "eslint .",
