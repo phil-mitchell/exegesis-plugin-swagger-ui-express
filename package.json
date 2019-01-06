@@ -1,6 +1,6 @@
 {
   "name": "exegesis-plugin-swagger-ui-express",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Swagger UI as an exegesis plugin",
   "main": "src/index.js",
   "scripts": {
