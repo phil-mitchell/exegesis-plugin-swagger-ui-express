@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express/compare/v1.0.7...v1.0.8) (2020-12-21)
+
+
+### Bug Fixes
+
+* **dependencies:** update dependency versions ([#13](https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express/issues/13)) ([e8315c2](https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express/commit/e8315c25251ac025f14310ade757d74d5b91ffc5))
+
 ## [1.0.7](https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express/compare/v1.0.6...v1.0.7) (2020-02-01)
 
 
