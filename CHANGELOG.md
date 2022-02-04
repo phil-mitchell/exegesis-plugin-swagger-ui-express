@@ -1,3 +1,11 @@
+## [1.0.10](https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express/compare/v1.0.9...v1.0.10) (2022-02-04)
+
+
+### Bug Fixes
+
+* **action:** Use Node 14 for release ([18777f7](https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express/commit/18777f7d51914b5d19176b630cad8a88b33d95dd))
+* **dependencies:** Upgrade dependencies for security fixes ([#22](https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express/issues/22)) ([a1ce48c](https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express/commit/a1ce48c493a28831edcb71a0a361eae6f5cf98fd))
+
 ## [1.0.9](https://github.com/phil-mitchell/exegesis-plugin-swagger-ui-express/compare/v1.0.8...v1.0.9) (2021-05-09)
 
 
