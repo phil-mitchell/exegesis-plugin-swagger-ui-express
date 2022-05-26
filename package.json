@@ -35,7 +35,7 @@
     "exegesis-express": "4.0.0",
     "express": "4.17.2",
     "fs-extra": "10.0.0",
-    "grunt": "1.4.1",
+    "grunt": "1.5.3",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-env": "^1.0.1",
     "grunt-express-server": "^0.5.4",
